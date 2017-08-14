@@ -38,7 +38,18 @@ module.exports = function(intentRequest) {
   var jobid = intentRequest.currentIntent.slots.jobid;
   var activity = intentRequest.currentIntent.slots.activity;
   var userId = intentRequest.userId;
-   const slots = intentRequest.currentIntent.slots;
+  const slots = intentRequest.currentIntent.slots;
+
+  const session_attributes = intentRequest.sessionAttributes;
+
+  const session_var = {};
+  session_var.email = intentRequest.currentIntent.slots.email;
+  session_var.jobid = intentRequest.currentIntent.slots.jobid;
+  session_var.activity = intentRequest.currentIntent.slots.activity;
+  session_var.userId = intentRequest.currentIntent.slots.userId;
+  session_var.slots = intentRequest.currentIntent.slots.slots;
+
+  session_attributes['users_jobs_activity'] = session_var;
 
   
   if (email === null && jobid ===null) {
